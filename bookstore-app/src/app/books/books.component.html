@@ -1,0 +1,15 @@
+<div class="container">
+    <h2>Books</h2>
+    <input type="text" [(ngModel)]="newBook.title" placeholder="Book title">
+    <input type="number" [(ngModel)]="newBook.price" placeholder="Book price">
+    <input type="text" [(ngModel)]="newBook.imageUrl" placeholder="Book image URL">
+    <button (click)="createBook()">Add Book</button>
+    <div class="book-tile" *ngFor="let book of books">
+      <img [src]="book.imageUrl" alt="{{ book.title }}">
+      <h3>{{ book.title }}</h3>
+      <p>{{ book.price | currency }}</p>
+      <button (click)="editBook(book.id)">Edit</button>
+      <button (click)="deleteBook(book.id)">Delete</button>
+    </div>
+  </div>
+  

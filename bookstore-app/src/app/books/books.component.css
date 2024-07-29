@@ -1,0 +1,14 @@
+/* Books list styles */
+h2 {
+    text-align: center;
+    margin-bottom: 1rem;
+  }
+  
+  .book-tile {
+    margin-bottom: 1rem;
+  }
+  
+  button {
+    margin-top: 0.5rem;
+  }
+  
