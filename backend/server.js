@@ -6,6 +6,8 @@ const app = express();
 app.use(bodyParser.json());
 app.use(cors());
 
+
+
 const users = [{ username: 'admin', password: 'password' }];
 
 app.post('/api/login', (req, res) => {
@@ -22,7 +24,29 @@ app.post('/api/login', (req, res) => {
   });
 
 
-const books = [];
+const books = [
+    {
+        id: 1,
+        title: 'The Great Gatsby',
+        author: 'F. Scott Fitzgerald',
+        price: 10.99,
+        imageUrl: 'https://example.com/great-gatsby.jpg'
+      },
+      {
+        id: 2,
+        title: 'To Kill a Mockingbird',
+        author: 'Harper Lee',
+        price: 8.99,
+        imageUrl: 'https://example.com/to-kill-a-mockingbird.jpg'
+      },
+      {
+        id: 3,
+        title: '1984',
+        author: 'George Orwell',
+        price: 12.99,
+        imageUrl: 'https://example.com/1984.jpg'
+      }
+];
 const clients = [];
 let order = { items: [], totalPrice: 0 };
 

@@ -1,15 +1,27 @@
-<div class="container">
-    <h2>Books</h2>
-    <input type="text" [(ngModel)]="newBook.title" placeholder="Book title">
-    <input type="number" [(ngModel)]="newBook.price" placeholder="Book price">
-    <input type="text" [(ngModel)]="newBook.imageUrl" placeholder="Book image URL">
-    <button (click)="createBook()">Add Book</button>
-    <div class="book-tile" *ngFor="let book of books">
+<div class="books-container">
+    <div *ngFor="let book of books" class="book-tile">
       <img [src]="book.imageUrl" alt="{{ book.title }}">
       <h3>{{ book.title }}</h3>
       <p>{{ book.price | currency }}</p>
-      <button (click)="editBook(book.id)">Edit</button>
+      <button (click)="startEdit(book)">Edit</button>
       <button (click)="deleteBook(book.id)">Delete</button>
     </div>
+  </div>
+  
+  <div class="book-form">
+    <h3>Add New Book</h3>
+    <input [(ngModel)]="newBook.title" placeholder="Title">
+    <input [(ngModel)]="newBook.price" placeholder="Price" type="number">
+    <input [(ngModel)]="newBook.imageUrl" placeholder="Image URL">
+    <button (click)="createBook()">Add Book</button>
+  </div>
+  
+  <div class="edit-form" *ngIf="isEditing">
+    <h3>Edit Book</h3>
+    <input [(ngModel)]="editBookData.title" placeholder="Title">
+    <input [(ngModel)]="editBookData.price" placeholder="Price" type="number">
+    <input [(ngModel)]="editBookData.imageUrl" placeholder="Image URL">
+    <button (click)="editBook()">Save Changes</button>
+    <button (click)="cancelEdit()">Cancel</button>
   </div>
   

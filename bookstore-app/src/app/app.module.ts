@@ -24,7 +24,7 @@ import { ViewOrderComponent } from './view-order/view-order.component';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule  // Add FormsModule to imports
+    FormsModule  
   ],
   providers: [],
   bootstrap: [AppComponent]

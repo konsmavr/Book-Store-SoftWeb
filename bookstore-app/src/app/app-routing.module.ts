@@ -5,13 +5,15 @@ import { ClientsComponent } from './clients/clients.component';
 import { BooksComponent } from './books/books.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
+import { AuthGuard } from './auth.guard';
 
 const routes: Routes = [
-  { path: '', component: LoginComponent },
-  { path: 'clients', component: ClientsComponent },
-  { path: 'books', component: BooksComponent },
-  { path: 'order-summary', component: OrderSummaryComponent },
-  { path: 'view-order', component: ViewOrderComponent }
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'clients', component: ClientsComponent,canActivate: [AuthGuard] },
+  { path: 'books', component: BooksComponent, canActivate: [AuthGuard] },
+  { path: 'order-summary', component: OrderSummaryComponent, canActivate: [AuthGuard] },
+  { path: 'view-order', component: ViewOrderComponent, canActivate: [AuthGuard] }
 ];
 
 @NgModule({

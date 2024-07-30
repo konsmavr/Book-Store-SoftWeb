@@ -9,6 +9,8 @@ import { BookService } from '../services/book.service';
 export class BooksComponent implements OnInit {
   books: any[] = [];
   newBook: any = { title: '', price: 0, imageUrl: '' };
+  editBookData: any = { id: null, title: '', price: 0, imageUrl: '' };
+  isEditing: boolean = false;
 
   constructor(private bookService: BookService) {}
 
@@ -31,8 +33,27 @@ export class BooksComponent implements OnInit {
     }
   }
 
-  editBook(id: number) {
-    // Implement edit logic
+  startEdit(book: any) {
+    this.isEditing = true;
+    this.editBookData = { ...book };
+  }
+
+  editBook() {
+    if (this.editBookData.title.trim() && this.editBookData.price > 0) {
+      this.bookService.editBook(this.editBookData.id, this.editBookData).subscribe(updatedBook => {
+        const index = this.books.findIndex(b => b.id === updatedBook.id);
+        if (index !== -1) {
+          this.books[index] = updatedBook;
+        }
+        this.isEditing = false;
+        this.editBookData = { id: null, title: '', price: 0, imageUrl: '' };
+      });
+    }
+  }
+
+  cancelEdit() {
+    this.isEditing = false;
+    this.editBookData = { id: null, title: '', price: 0, imageUrl: '' };
   }
 
   deleteBook(id: number) {
