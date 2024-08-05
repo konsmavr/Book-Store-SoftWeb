@@ -8,6 +8,8 @@ import { Observable, tap } from 'rxjs';
 export class AuthService {
   private baseUrl = 'http://localhost:3000/api/login';
   private loggedIn = false;
+  currentUser: any;
+  private username: string | null = null;
 
   constructor(private http: HttpClient) { }
 
@@ -20,8 +22,18 @@ export class AuthService {
       })
     );
   }
+  logout(): void {
+    this.loggedIn = false;
+    this.username = null;
+  }
 
   isLoggedIn(): boolean {
     return this.loggedIn;
+  }
+  getUsername(): string | null {
+    return this.currentUser ? this.currentUser.username : null;
+  }
+  setCurrentUser(user: any) {
+    this.currentUser = user;
   }
 }

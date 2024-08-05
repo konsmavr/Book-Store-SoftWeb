@@ -1,0 +1,35 @@
+<!-- <div class="cart-container">
+    <h2>Your Cart</h2>
+    <div *ngIf="loading">Loading...</div>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    <div *ngIf="cart.length === 0 && !loading && !errorMessage">Your cart is empty</div>
+    
+    <div *ngFor="let book of cart" class="cart-item">
+      <img [src]="book.imageUrl" alt="{{ book.title }}">
+      <div class="cart-item-details">
+        <h3>{{ book.title }}</h3>
+        <p>{{ book.price | currency }}</p>
+        <button (click)="removeFromCart(book.id)">Remove</button>
+      </div>
+    </div>
+    
+    <div *ngIf="cart.length > 0" class="cart-total">
+      <h3>Total: {{ total | currency }}</h3>
+      <button (click)="placeOrder()">Place Order</button>
+    </div>
+  </div>
+   -->
+
+   <div class="cart-container">
+    <h2>Your Cart</h2>
+    <div *ngFor="let book of cart" class="cart-item">
+      <img [src]="book.imageUrl" alt="{{ book.title }}">
+      <h3>{{ book.title }}</h3>
+      <p>{{ book.price | currency }}</p>
+      <button (click)="removeFromCart(book.id)">Remove</button>
+    </div>
+    <div class="cart-summary">
+      <h3>Total: {{ total | currency }}</h3>
+    </div>
+  </div>
+  

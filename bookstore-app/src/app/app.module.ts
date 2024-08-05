@@ -10,6 +10,12 @@ import { ClientsComponent } from './clients/clients.component';
 import { BooksComponent } from './books/books.component';
 import { OrderSummaryComponent } from './order-summary/order-summary.component';
 import { ViewOrderComponent } from './view-order/view-order.component';
+import { CartComponent } from './cart/cart.component';
+
+import { AuthService } from './services/auth.service';
+import { BookService } from './services/book.service';
+import { CartService } from './services/cart.service'; 
+
 
 @NgModule({
   declarations: [
@@ -18,15 +24,21 @@ import { ViewOrderComponent } from './view-order/view-order.component';
     ClientsComponent,
     BooksComponent,
     OrderSummaryComponent,
-    ViewOrderComponent
+    ViewOrderComponent,
+    CartComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    FormsModule  
+    FormsModule,
+    
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    BookService,
+    CartService 
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
