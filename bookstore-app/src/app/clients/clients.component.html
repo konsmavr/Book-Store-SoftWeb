@@ -1,13 +1,24 @@
-<div class="container">
-    <h2>Clients</h2>
-    <input type="text" [(ngModel)]="newClientName" placeholder="New client name">
-    <button (click)="createClient()">Add Client</button>
-    <ul>
-      <li *ngFor="let client of clients">
-        {{ client.name }}
-        <button (click)="editClient(client.id)">Edit</button>
-        <button (click)="deleteClient(client.id)">Delete</button>
-      </li>
-    </ul>
+<div class="clients-container">
+  <div *ngFor="let client of clients" class="client-tile">
+    <div class="client-info">
+      <span>{{ client.name }}</span>
+    </div>
+    <div class="client-actions">
+      <button (click)="startEdit(client)">Edit</button>
+      <button class="delete-button" (click)="deleteClient(client.id)">Delete</button>
+    </div>
   </div>
-  
+</div>
+
+<div class="client-form">
+  <h3>Add New Client</h3>
+  <input [(ngModel)]="newClientName" placeholder="Client Name">
+  <button (click)="createClient()">Add Client</button>
+</div>
+
+<div class="edit-form" *ngIf="isEditing">
+  <h3>Edit Client</h3>
+  <input [(ngModel)]="editClientData.name" placeholder="Client Name">
+  <button (click)="editClient()">Save Changes</button>
+  <button (click)="cancelEdit()">Cancel</button>
+</div>

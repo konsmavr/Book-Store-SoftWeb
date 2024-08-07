@@ -9,6 +9,8 @@ import { ClientService } from '../services/client.service';
 export class ClientsComponent implements OnInit {
   clients: any[] = [];
   newClientName: string = '';
+  editClientData: any= null;
+  isEditing: boolean = false;
 
   constructor(private clientService: ClientService) {}
 
@@ -30,9 +32,25 @@ export class ClientsComponent implements OnInit {
       });
     }
   }
+  startEdit(client: any) {
+    this.editClientData = { ...client };
+    this.isEditing = true;
+  }
 
-  editClient(id: number) {
-    // Implement edit logic
+  editClient() {
+    if (this.editClientData && this.editClientData.name.trim()) {
+      this.clientService.updateClient(this.editClientData.id, this.editClientData).subscribe(updatedClient => {
+        const index = this.clients.findIndex(client => client.id === updatedClient.id);
+        if (index !== -1) {
+          this.clients[index] = updatedClient;
+        }
+        this.cancelEdit();
+      });
+    }
+  }
+  cancelEdit() {
+    this.editClientData = null;
+    this.isEditing = false;
   }
 
   deleteClient(id: number) {
